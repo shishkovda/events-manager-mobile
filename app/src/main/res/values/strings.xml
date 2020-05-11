@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">event-manager-mobile</string>
+    <string name="action_settings">Settings</string>
+
+        <string name="lbl_events">События</string>
+        <string name="lbl_title">Название</string>
+
+        <string name="lbl_date">Дата</string>
+        <string name="lbl_assignee">Ответственный</string>
+
+</resources>

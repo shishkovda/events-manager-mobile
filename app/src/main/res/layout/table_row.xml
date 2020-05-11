@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:id="@+id/col1" android:text=""
+              android:layout_height="60dp"
+              android:layout_width="150dp"
+              android:textSize="20sp"/>
+    <TextView android:id="@+id/col2" android:text=""
+              android:layout_height="60dp"
+              android:layout_width="120dp"
+              android:textSize="20sp"/>
+    <TextView android:id="@+id/col3" android:text=""
+              android:layout_height="60dp"
+              android:textSize="20sp"/>
+    <TextView android:id="@+id/col4" android:text="" />
+    <TextView android:id="@+id/col5" android:text="" />
+    <TextView android:id="@+id/col6" android:text="" />
+</TableRow>
