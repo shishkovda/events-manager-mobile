@@ -34,17 +34,15 @@ public class SmsReceiver extends BroadcastReceiver {
                 bodyText.append(messages[i].getMessageBody());
             }
             String body = bodyText.toString();
-            List<Integer> eventIds = MainActivity.eventIds;
-            for(Integer eventId:eventIds){
-                if (body.contains(eventId.toString())){
-                    sendMessage(body, eventId.toString());
-                }
-            }
+            sendMessage(body);
+
         }
     }
 
-    private void sendMessage(String message, String eventId){
+    private void sendMessage(String message){
         SendMessage sendMessage = new SendMessage();
+        String eventId = message.substring(message.lastIndexOf(" ")+1);
+        eventId = eventId.replaceAll("\"", "");
         sendMessage.execute(message, eventId);
     }
 
@@ -59,7 +57,7 @@ public class SmsReceiver extends BroadcastReceiver {
             okhttp3.RequestBody body = okhttp3.RequestBody.create(mediaType, "{\n" +
                     "\t\t\"eventId\":\""+params[1]+"\",\n" +
                     "\t\t\"userId\":\""+MainActivity.userId+"\",\n" +
-                    "\t\t\"message\":\""+params[0]+"\"\n" +
+                    "\t\t\"message\":\""+params[0].replaceAll("\"", "")+"\"\n" +
                     "}");
             String responseBody = httpRequestor.sendRequest("/api/messages", body, "POST");
 

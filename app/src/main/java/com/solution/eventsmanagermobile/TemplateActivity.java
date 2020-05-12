@@ -186,7 +186,7 @@ public class TemplateActivity extends AppCompatActivity {
                     "\t\t\t\t\"position\":\"2\"\n" +
                     "}"+
                     "\t\t],\n" +
-                    "\t\t\"template\":\""+params[1]+"\"\n" +
+                    "\t\t\"template\":\""+params[1].replaceAll("\"", "")+"\"\n" +
                     "}");
             String responseBody = httpRequestor.sendRequest("/api/templates", body, "POST");
 
