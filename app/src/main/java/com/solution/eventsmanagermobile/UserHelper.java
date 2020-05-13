@@ -60,6 +60,7 @@ public class UserHelper {
             HttpRequestor httpRequestor = new HttpRequestor();
             System.out.println("test");
             params[0] = "+79172142611";
+//            params[0] = "+15555215554";
             String phone = params[0].replaceAll("\\+", "%2B");
             String responseBody = httpRequestor.sendRequest("/api/users?phoneNumber=" + phone,
                     null, "GET");

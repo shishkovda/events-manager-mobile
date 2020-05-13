@@ -40,10 +40,10 @@ public class SmsReceiver extends BroadcastReceiver {
     }
 
     private void sendMessage(String message){
-        SendMessage sendMessage = new SendMessage();
-        String eventId = message.substring(message.lastIndexOf(" ")+1);
-        eventId = eventId.replaceAll("\"", "");
-        sendMessage.execute(message, eventId);
+        SendMessage2 sendMessage = new SendMessage2();
+//        String eventId = message.substring(message.lastIndexOf(" ")+1);
+//        eventId = eventId.replaceAll("\"", "");
+        sendMessage.execute(message);
     }
 
     private class SendMessage extends AsyncTask<String, Void, Void> {
@@ -60,6 +60,35 @@ public class SmsReceiver extends BroadcastReceiver {
                     "\t\t\"message\":\""+params[0].replaceAll("\"", "")+"\"\n" +
                     "}");
             String responseBody = httpRequestor.sendRequest("/api/messages", body, "POST");
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+        }
+
+        @Override
+        protected void onPreExecute() {
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+        }
+    }
+
+    private class SendMessage2 extends AsyncTask<String, Void, Void> {
+
+        @Override
+        protected Void doInBackground(String... params) {
+
+            HttpRequestor httpRequestor = new HttpRequestor();
+
+            MediaType mediaType = MediaType.parse("application/json");
+            okhttp3.RequestBody body = okhttp3.RequestBody.create(mediaType, "{\n" +
+                    "\t\t\"message\":\""+params[0].replaceAll("\"", "")+"\"\n" +
+                    "}");
+            String responseBody = httpRequestor.sendRequest("/api/messages/bulk", body, "POST");
 
             return null;
         }
